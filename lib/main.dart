@@ -1,8 +1,11 @@
 import 'package:firebase_auth_crud/home.dart';
 import 'package:flutter/material.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 //OLD PROJECT LOST, THIS IS NEW ONE CONEECTED TO SAME FIRESTORE AND SAME GIT REPO
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const MyApp()); //
 }
 
