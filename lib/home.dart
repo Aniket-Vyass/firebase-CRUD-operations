@@ -64,11 +64,14 @@ class _HomeState extends State<Home> {
               TextButton(
                 onPressed: () {
                   if (doc == null) {
-                    employees.add({'name': nameCtrl, 'email': emailCtrl});
+                    employees.add({
+                      'name': nameCtrl.text,
+                      'email': emailCtrl.text,
+                    });
                   } else {
-                    employees.doc().update({
-                      'name': nameCtrl,
-                      'email': emailCtrl,
+                    employees.doc(doc.id).update({
+                      'name': nameCtrl.text,
+                      'email': emailCtrl.text,
                     });
                   }
                   Navigator.pop(context);
@@ -115,11 +118,13 @@ class _HomeState extends State<Home> {
                     children: [
                       IconButton(
                         icon: Icon(Icons.edit),
-                        onPressed: () => openEmployeeDialog(),
+                        onPressed: () => openEmployeeDialog(doc: docs[index]),
                       ),
                       IconButton(
                         icon: Icon(Icons.delete),
-                        onPressed: () => openEmployeeDialog(),
+                        onPressed: () async {
+                          await employees.doc(docs[index].id).delete();
+                        },
                       ),
                     ],
                   ),
