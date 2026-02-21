@@ -67,11 +67,14 @@ class _HomeState extends State<Home> {
                     employees.add({
                       'name': nameCtrl.text,
                       'email': emailCtrl.text,
+                      'createdAt':
+                          FieldValue.serverTimestamp(), //Yes you can add more fields to your firestore like this, that's why tehreferene is doc.id not doc[index]
                     });
                   } else {
                     employees.doc(doc.id).update({
                       'name': nameCtrl.text,
                       'email': emailCtrl.text,
+                      'updatedAt': FieldValue.serverTimestamp(),
                     });
                   }
                   Navigator.pop(context);
